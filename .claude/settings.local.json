@@ -6,8 +6,14 @@
       "Bash(git commit:*)",
       "Bash(uv:*)",
       "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash($HOME/.local/bin/uv.exe:*)",
+      "Bash(pip install:*)",
+      "Bash(find:*)",
+      "Bash(touch:*)"
     ],
     "deny": []
-  }
+  },
+  "tts_enabled": true
 }

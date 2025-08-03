@@ -90,16 +90,27 @@ def main():
         # Check for dangerous commands
         is_dangerous, danger_reason = is_dangerous_command(tool_name, tool_input)
         if is_dangerous:
-            print(f"BLOCKED: {danger_reason}", file=sys.stderr)
-            log_entry["status"] = "blocked"
-            log_entry["block_reason"] = danger_reason
-            log_data.append(log_entry)
-            
-            # Save log
-            with open(log_file, 'w') as f:
-                json.dump(log_data, f, indent=2)
-            
-            sys.exit(2)  # Block the tool execution
+            # Check if user has pre-approved dangerous commands via flag file
+            approval_file = Path(".claude/allow_dangerous")
+            if approval_file.exists():
+                print(f"⚠️  SECURITY WARNING: {danger_reason} (pre-approved)", file=sys.stderr)
+                log_entry["status"] = "approved_dangerous_preauth"
+                log_entry["warning_reason"] = danger_reason
+            else:
+                command = tool_input.get("command", "")
+                print(f"\n⚠️  SECURITY WARNING: {danger_reason}", file=sys.stderr)
+                print(f"Command: {command}", file=sys.stderr)
+                print("To allow dangerous commands, run: touch .claude/allow_dangerous", file=sys.stderr)
+                print("To allow just once, use: /danger-allow", file=sys.stderr)
+                log_entry["status"] = "blocked"
+                log_entry["block_reason"] = danger_reason
+                log_data.append(log_entry)
+                
+                # Save log
+                with open(log_file, 'w') as f:
+                    json.dump(log_data, f, indent=2)
+                
+                sys.exit(2)  # Block the tool execution
         
         # Check for sensitive file access
         is_sensitive, sensitive_reason = is_sensitive_file_access(tool_name, tool_input)

@@ -13,6 +13,18 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent / "utils"))
 from env_loader import get_env_var
 
+def get_tts_setting():
+    """Get TTS enabled status from settings"""
+    settings_file = Path(".claude/settings.local.json")
+    if settings_file.exists():
+        try:
+            with open(settings_file, 'r') as f:
+                settings = json.load(f)
+            return settings.get('tts_enabled', True)
+        except:
+            return True
+    return True
+
 def ensure_log_dir():
     """Ensure logs directory exists"""
     log_dir = Path(".claude/logs")
@@ -81,8 +93,9 @@ def main():
         # Check command line arguments
         args = sys.argv[1:] if len(sys.argv) > 1 else []
         
-        # Play TTS notification if --notify flag is present
-        if "--notify" in args:
+        # Play TTS notification if --notify flag is present and not disabled by user
+        tts_enabled = get_tts_setting()
+        if "--notify" in args and tts_enabled:
             tts_success, tts_message = play_notification_sound(message)
             log_entry["tts"] = {
                 "enabled": True,
@@ -93,7 +106,10 @@ def main():
             if tts_success and "--verbose" in args:
                 print(f"🔊 Notification: {tts_message}", file=sys.stderr)
         else:
-            log_entry["tts"] = {"enabled": False}
+            log_entry["tts"] = {
+                "enabled": False,
+                "reason": "disabled_by_user" if not tts_enabled else "flag_not_set"
+            }
         
         log_data.append(log_entry)
         
