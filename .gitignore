@@ -5,3 +5,13 @@
 !.gitignore
 !commands/
 !commands/**
+!.claude/
+!.claude/**
+!.env.example
+
+# Always ignore sensitive files
+.env
+.env.local
+.env.production
+*.key
+*.pem
