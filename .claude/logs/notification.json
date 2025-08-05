@@ -68,5 +68,15 @@
       "success": true,
       "message": "Agent notification"
     }
+  },
+  {
+    "timestamp": "2025-08-05T19:26:56.266743",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "message": "Claude needs your permission to use ",
+    "tts": {
+      "enabled": true,
+      "success": true,
+      "message": "Agent notification"
+    }
   }
 ]

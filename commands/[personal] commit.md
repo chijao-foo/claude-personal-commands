@@ -12,6 +12,8 @@ To create a commit, just type:
 Or with options:
 ```
 /commit --no-verify
+/commit --notes "Personal reminder about why this change was made"
+/commit --no-verify --notes "Quick fix for production issue - bypassed tests due to urgency"
 ```
 
 ## What This Command Does
@@ -26,6 +28,7 @@ Or with options:
 5. Analyzes the diff to determine if multiple distinct logical changes are present
 6. If multiple distinct changes are detected, suggests breaking the commit into multiple smaller commits
 7. For each commit (or the single commit if not split), creates a commit message using emoji conventional commit format
+8. If `--notes` is provided, adds your personal notes to the commit message body for future reference
 
 ## Best Practices for Commits
 
@@ -138,6 +141,17 @@ Good commit messages:
 - 🔒️ fix: strengthen authentication password requirements
 - ♿️ feat: improve form accessibility for screen readers
 
+Good commit messages with personal notes:
+- ✨ feat: add user authentication system
+
+  Author Notes: Implemented this after client meeting - they specifically wanted OAuth2 and local auth options
+- 🐛 fix: resolve memory leak in rendering process
+
+  Author Notes: Found this during performance testing - was causing crashes after 2 hours of usage
+- 🚑️ fix: patch critical security vulnerability in auth flow
+
+  Author Notes: Emergency fix for production - vulnerability reported by security team, bypassed normal review process
+
 Example of splitting commits:
 - First commit: ✨ feat: add new solc version type definitions
 - Second commit: 📝 docs: update documentation for new solc versions
@@ -151,6 +165,24 @@ Example of splitting commits:
 ## Command Options
 
 - `--no-verify`: Skip running the pre-commit checks (lint, build, generate:docs)
+- `--notes "your notes"`: Add personal author notes to the commit message for future reference
+
+## Personal Notes Implementation
+
+When using the `--notes` option, your personal notes will be:
+
+1. **Added to commit message body**: Notes appear after the main commit message, separated by a blank line
+2. **Formatted as "Author Notes:"**: Creates a consistent, searchable pattern in your git history
+3. **Preserved in git log**: Available when viewing commit details with `git log` or `git show`
+4. **Searchable**: Use `git log --grep="Author Notes"` to find commits with your personal notes
+5. **Private to your local commits**: Notes help you remember context without cluttering the main message
+
+Example commit message structure:
+```
+🐛 fix: resolve memory leak in rendering process
+
+Author Notes: Found this during performance testing - was causing crashes after 2 hours of usage
+```
 
 ## Important Notes
 
@@ -159,6 +191,7 @@ Example of splitting commits:
 - If specific files are already staged, the command will only commit those files
 - If no files are staged, it will automatically stage all modified and new files
 - The commit message will be constructed based on the changes detected
+- Personal notes (when provided) will be appended to the commit message body
 - Before committing, the command will review the diff to identify if multiple commits would be more appropriate
 - If suggesting multiple commits, it will help you stage and commit the changes separately
 - Always reviews the commit diff to ensure the message matches the changes
