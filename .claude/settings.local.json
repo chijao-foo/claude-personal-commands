@@ -11,7 +11,15 @@
       "Bash($HOME/.local/bin/uv.exe:*)",
       "Bash(pip install:*)",
       "Bash(find:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(cp:*)",
+      "Bash(rm:*)",
+      "Bash(echo $HOME)",
+      "Bash(echo $HISTFILE)",
+      "Bash(cat:*)",
+      "Bash(mv:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   },
