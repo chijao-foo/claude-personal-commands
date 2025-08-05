@@ -361,5 +361,49 @@
       "success": true,
       "message": "All done! Ready for next task."
     }
+  },
+  {
+    "timestamp": "2025-08-05T19:36:00.922254",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "stop_hook_active": false,
+    "completion_message": "Ready for your next request!",
+    "tts": {
+      "enabled": true,
+      "success": true,
+      "message": "Ready for your next request!"
+    }
+  },
+  {
+    "timestamp": "2025-08-05T20:03:46.640191",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "stop_hook_active": false,
+    "completion_message": "Ready for your next request!",
+    "tts": {
+      "enabled": true,
+      "success": true,
+      "message": "Ready for your next request!"
+    }
+  },
+  {
+    "timestamp": "2025-08-05T20:06:21.030199",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "stop_hook_active": false,
+    "completion_message": "All done! Ready for next task.",
+    "tts": {
+      "enabled": true,
+      "success": true,
+      "message": "All done! Ready for next task."
+    }
+  },
+  {
+    "timestamp": "2025-08-05T20:11:22.735206",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "stop_hook_active": false,
+    "completion_message": "Ready for your next request!",
+    "tts": {
+      "enabled": true,
+      "success": true,
+      "message": "Ready for your next request!"
+    }
   }
 ]
