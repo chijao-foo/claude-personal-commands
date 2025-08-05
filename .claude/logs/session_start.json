@@ -88,5 +88,19 @@
     "claude_md_found": false,
     "context_files": [],
     "context_injected": true
+  },
+  {
+    "timestamp": "2025-08-05T20:38:02.523040",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "source": "compact",
+    "git_context": {
+      "branch": "main",
+      "modified_files": 7,
+      "status": "modified",
+      "error": "'NoneType' object has no attribute 'strip'"
+    },
+    "claude_md_found": false,
+    "context_files": [],
+    "context_injected": true
   }
 ]
