@@ -382,5 +382,17 @@
     },
     "context_injected": true,
     "status": "processed"
+  },
+  {
+    "timestamp": "2025-08-05T19:34:19.703314",
+    "session_id": "5a20e59f-ad6e-4dc3-8444-4411bf1c38bd",
+    "prompt": "/[personal] commit --notes \"Stable checkpoint for TTS working accorss multiple projects, i.e. global hooks are finally working. Still need to fix elevenlabs API calls but system voices work\"",
+    "prompt_length": 190,
+    "validation": {
+      "valid": true,
+      "reason": null
+    },
+    "context_injected": true,
+    "status": "processed"
   }
 ]
